@@ -194,12 +194,12 @@ class TFOb:
 
     @property
     def book(self):
-        return [section[0] for section in self._get_sections()]
+        return [str(section[0]) for section in self._get_sections()]
 
     @property
     def chapter(self):
-        return [section[1] for section in self._get_sections()]
+        return [str(section[1]) for section in self._get_sections()]
 
     @property
     def verse(self):
-        return [section[2] for section in self._get_sections()]
+        return [str(section[2]) for section in self._get_sections()]
