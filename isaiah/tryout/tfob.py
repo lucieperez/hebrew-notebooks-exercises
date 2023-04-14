@@ -154,7 +154,7 @@ class TFOb:
             return " ".join([g_cons for g_cons in self.g_cons if g_cons])
 
     def __str__(self):
-        return str()
+        return self.str()
 
     def __dir__(self):
         return list(self.__dict__.keys()) + dir(self.source.F) + self._levels
