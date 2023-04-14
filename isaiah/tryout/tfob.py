@@ -101,7 +101,7 @@ class TFOb:
         ids = []
         for node in self:
             for key, value in kwargs.items():
-                if getattr(node, key)[0] != value:
+                if getattr(node, key, [None])[0] != value:
                     break
             else:
                 ids.append(node.ids[0])
@@ -113,7 +113,7 @@ class TFOb:
         ids = []
         for node in self:
             for key, values in kwargs.items():
-                if getattr(node, key)[0] not in values:
+                if getattr(node, key, [None])[0] not in values:
                     break
             else:
                 ids.append(node.ids[0])
@@ -123,7 +123,7 @@ class TFOb:
         ids = []
         for node in self:
             for key, value in kwargs.items():
-                if getattr(node, key)[0] != value:
+                if getattr(node, key, [None])[0] != value:
                     break
             else:
                 return TFOb(node.ids[0], source=self.source)
