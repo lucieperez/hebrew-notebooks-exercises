@@ -99,40 +99,34 @@ class TFOb:
 
     def filter(self, **kwargs):
         ids = []
-        for id_ in self.ids:
+        for node in self:
             for key, value in kwargs.items():
-                if key == "lex" and self.source.name == "DSS":
-                    key = "lex_etcbc"
-                if getattr(self.source.F, key).v(id_) != value:
+                if getattr(node, key)[0] != value:
                     break
             else:
-                ids.append(id_)
+                ids.append(node.ids[0])
         return TFOb(ids, source=self.source)
 
     def filter_in(self, **kwargs):
         for key in kwargs:
             kwargs[key] = set(kwargs[key])
         ids = []
-        for id_ in self.ids:
+        for node in self:
             for key, values in kwargs.items():
-                if key == "lex" and self.source.name == "DSS":
-                    key = "lex_etcbc"
-                if getattr(self.source.F, key).v(id_) not in values:
+                if getattr(node, key)[0] not in values:
                     break
             else:
-                ids.append(id_)
+                ids.append(node.ids[0])
         return TFOb(ids, source=self.source)
 
     def first(self, **kwargs):
         ids = []
-        for id_ in self.ids:
+        for node in self:
             for key, value in kwargs.items():
-                if key == "lex" and self.source.name == "DSS":
-                    key = "lex_etcbc"
-                if getattr(self.source.F, key).v(id_) != value:
+                if getattr(node, key)[0] != value:
                     break
             else:
-                return TFOb(id_, source=self.source)
+                return TFOb(node.ids[0], source=self.source)
         return TFOb([], source=self.source)
 
     def __getitem__(self, i):
